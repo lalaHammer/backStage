@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>标签管理</title>
+		<link rel="stylesheet" type="text/css" href="css/bluebootstrap.min.css" />
+		<style type="text/css">
+			.alert{
+				margin:10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="head"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="page-header">
+						<h4>TAG标签管理</h4></div>
+					<div class="form-group">
+						<div class="col-md-10">
+							<input type="text" class="form-control" placeholder="请输入要添加的标签" />
+						</div>
+						<div class="col-md-2">
+							<button class="btn btn-default" id='btn'>添加</button>
+						</div>
+					</div>
+					<div class="alert alert-info alert-dismissible pull-left"><label for="">bootstrap</label>
+						<span class="close" data-dismiss='alert'>&times;</span>
+					</div>
+					<div class="alert alert-info alert-dismissible pull-left"><label for="">web前端学院</label>
+						<span class="close" data-dismiss='alert'>&times;</span>
+					</div>
+					<div class="alert alert-info alert-dismissible pull-left"><label for="">web前端学院</label>
+						<span class="close" data-dismiss='alert'>&times;</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="foot"></div>
+		<script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>-->
+		<script type="text/javascript">
+			$(function() {
+				$('#head').load('header.html',function(){
+					$('#ulList li').eq(3).addClass('active').siblings().removeClass('active');
+				});
+				
+				$('#foot').load('footer.html');
+				$('#btn').on('click',function(){
+					var $newAlert=$('<div>');
+					$newAlert.attr('class','alert alert-info alert-dismissible pull-left');
+					var $newLabel=$('<label>');
+					$newLabel.html($('input').val());
+					$newAlert.append($newLabel);
+					var $newSpan=$('<span>');
+					$newSpan.html('&times;');
+					$newSpan.attr('class','close').attr('data-dismiss','alert');
+					$newAlert.append($newSpan);
+					$('.col-md-12').append($newAlert);
+					$('input').val('');
+				});
+			});
+		</script>
+	</body>
+
+</html>

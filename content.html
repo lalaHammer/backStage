@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>内容管理</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	</head>
+	<body>
+		<div id="head"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2">
+					<p class="list-group" >
+						<a href="#" id='myCon' class="list-group-item active">内容管理</a>
+						<a href="#" id='myAdd' class="list-group-item">添加内容</a>
+					</p>
+				</div>
+				<!--左侧内容管理-->
+				<div class="col-md-10">
+					<div class="panel">
+						<div class="panel-heading">内容管理</div>
+						<div class="panle-body">
+							<ul class="nav nav-tabs">
+								<li class="active" ><a href="#con" data-toggle='tab' id="myConli">内容管理</a></li>
+								<li><a href="#add" data-toggle='tab' id="myAddli">添加内容</a></li>
+							</ul>
+							<div class="tab-content">
+								<div class="tab-pane fade in active" id="con">
+									<table class="table" >
+										<thead>
+											<tr>
+												<td>文章标题</td>
+												<td>作者</td>
+												<td>时间</td>
+												<td>操作</td>
+											</tr>
+										</thead>
+										<tbody id="myTbody"></tbody>
+									</table>
+									<ul class="pagination pull-right">
+									<li class="disabled"><a href="#">&laquo;</a></li>
+									<li class="active"><a href="#" >1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">5</a></li>
+									<li><a href="#">6</a></li>
+									<li><a href="#">&raquo;</a></li>
+								</ul>
+								</div>
+								<div class="tab-pane fade in" id="add">
+									<form action="">
+										<div class="form-group">
+											<label for="" class="form-label">标题</label>
+											<input type="text" class="form-control" placeholder="请输入文章标题"/>
+										</div>
+										<div class="form-group">
+											<label for="" class="form-label">文章内容</label>
+											<textarea class="form-control" rows='10' placeholder="请输入文章正文部分"></textarea>
+										</div>
+										<div class="form-group form-horizontal">
+											<label class="control-label">
+												<input type="checkbox" />全局置顶
+											</label>
+											<button class="btn btn-default pull-right">发布文章</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div id="foot"></div>
+		<script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#head').load('header.html',function(){
+				$('#ulList').find('li').eq(2).addClass('active').siblings().removeClass('active');
+					
+				});
+
+				$('#foot').load('footer.html');
+				var arr=[
+				'泛Mooc职业教育， 效果和就业为王',
+				'产品经理常犯的7大错误，你造吗？',
+				'如何正确使用python日志系统',
+				'C语言const修饰符的怎么使用？',
+				'Android开发用onCreateOptionsMenu()如何创',
+				'怎样才能成为优秀的iOS开发工程师',
+				'Android今年推出了些什么新技术？',
+				];
+				var $str='<div class="dropdown"><button class="btn btn-default" data-toggle="dropdown">操作<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#">编辑</a></li><li><a href="#">删除</a></li><li><a href="#">全部置顶</a></li></ul></div>';
+				for(var i=0;i<arr.length;i++){
+					var $tr=$('<tr>');
+					for(var j=0;j<4;j++){
+						var $td=$('<td>');
+						switch(j){
+							case 0:$td.html(arr[i]);break;
+							case 1:$td.html('关关老师');break;
+							case 2:$td.html('2015/08/08');break;
+							case 3:$td.html($str);
+						}
+						$tr.append($td);
+					}
+					$('#myTbody').append($tr);
+				}
+				
+				//点击
+				$('#myCon').click(function(){
+					$('#myConli').click();
+					$(this).addClass('active').siblings().removeClass('active');
+				});
+				$('#myAdd').click(function(){
+					$('#myAddli').click();
+					$(this).addClass('active').siblings().removeClass('active');
+				});
+				
+				$('#myConli').click(function(){
+					$('#myCon').addClass('active').siblings().removeClass('active');
+				});
+				$('#myAddli').click(function(){
+					$('#myAdd').addClass('active').siblings().removeClass('active');
+				});
+			});
+		</script>
+	</body>
+</html>
